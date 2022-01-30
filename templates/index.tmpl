@@ -33,16 +33,16 @@
     <script>
         $(function () {
 
-            $('form').on('submit', function (e) {
+            $("#form1").on('submit', function (e) {
 
                 e.preventDefault();
 
                 $.ajax({
                     type: 'post',
                     url: '/sendMessage',
-                    data: $('form').serialize(),
+                    data: $("#textarea1").val(),
                     success: function () {
-                        alert('Form was submitted');
+                        $("#textarea1").val('');
                     }
                 });
 
