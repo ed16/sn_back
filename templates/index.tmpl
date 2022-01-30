@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <title>Social Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .column {
+            float: left;
+            padding: 10px;
+        }
+
+        .left,
+        .right {
+            width: 25%;
+        }
+
+        .middle {
+            width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script>
+        $(function () {
+
+            $('form').on('submit', function (e) {
+
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'post',
+                    url: '/sendMessage',
+                    data: $('form').serialize(),
+                    success: function () {
+                        alert('Form was submitted');
+                    }
+                });
+
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+    <h2>User: {{ .userName }}</h2>
+
+    <div class="row">
+        <div class="column left">
+
+        </div>
+        <div class="column middle" style="background-color:rgb(216, 216, 216);">
+            <h2>The Wall</h2>
+            <div class="row">
+                <form id="form1" name="form1">
+                    <textarea id="textarea1" cols="40" rows="5"></textarea><br>
+                    <input name="submit" type="submit" value="Send message">
+                </form>
+                <button>Attach audio</button>
+                <button>Attach video</button>
+
+            </div>
+            <div class="row">
+                <p>Message 1</p>
+                <!-- http://localhost:8080/sendMessage -->
+            </div>
+            <div class="row">
+                <p>Message 2</p>
+            </div>
+            <div class="row">
+                <p>Message 3</p>
+            </div>
+        </div>
+        <div class="column right">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

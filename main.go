@@ -12,12 +12,13 @@ type E struct {
 
 func main() {
 	r := gin.Default()
+	r.LoadHTMLGlob("templates/*.tmpl")
 
-	// r.GET("/sendMessage", func(c *gin.Context) {
-	// 	c.JSON(200, gin.H{
-	// 		"message": "pong",
-	// 	})
-	// })
+	r.GET("index.html", func(c *gin.Context) {
+		c.HTML(200, "index.tmpl", gin.H{
+			"userName": "Daniel Fridman",
+		})
+	})
 
 	r.POST("/sendMessage", func(c *gin.Context) {
 		x, _ := ioutil.ReadAll(c.Request.Body)
